@@ -1,3 +1,13 @@
+/*
+// 2. 웹페이지가 로드되면 실행됨.
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded');
+});
+
+// 1. 파일이 실행되면 실행됨.
+console.log("todo.js");
+*/
+
 // DOM 요소들을 미리 저장
 const todoListElement = document.getElementById("todoList");
 const addButton = document.getElementById("addTodo");
