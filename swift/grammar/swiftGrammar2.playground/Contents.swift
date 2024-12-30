@@ -45,3 +45,19 @@ let lastMovieToWatch = moviesToWatch.last
 
 print(lastMovieToWatch as Any) //Any 타입을 주어 임시적으로 warning을 없앰
 // Any 라는건 어떤 타입이라도 받겠다라는 타입인데 스위프트는 강타입(?) 언어라 만약에 Any 로 질러놓은 다음 그 Any 가 처리할수 없는 일을 시키면 프로그램이 꺼져버린다. 사용시 주의
+
+// Array<String> == [String]
+let spyMovieSuggestions: [String] = ["The Bourne Identity", "Casino Royale", "Mission Impossible"]
+moviesToWatch += spyMovieSuggestions
+print(moviesToWatch)
+print(moviesToWatch.count)
+
+var starWarsTrilogy = Array<String>(repeating: "Star Wars: ", count: 3)
+starWarsTrilogy[0] = starWarsTrilogy[0] + "A New Hope"
+starWarsTrilogy[1] += "The Empire Strikes Back"
+starWarsTrilogy[2] += "The Return of the Jedi"
+print(starWarsTrilogy)
+
+// 특정 범위 요소 교체
+moviesToWatch.replaceSubrange(2...4, with: starWarsTrilogy)
+print(moviesToWatch)
