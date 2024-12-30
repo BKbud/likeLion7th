@@ -26,3 +26,19 @@ i += 1
 print(i)
 
 print("Number of characters: \(phrase.count)")
+
+// string literal
+let multilineExplanation = """
+Why is the following phrase often used?
+"The quick brown fox jumps over the lazy dog"
+This phrase contains every letter in the alphabet.
+"""
+
+let phraseAreEqual = phrase == anoatherPhrase
+print(phraseAreEqual)
+
+let phraseHas43Characters = phrase.count == 40 + 3
+print(phraseHas43Characters)
+
+let phraseHasMoreThan43Characters = phrase.count > 40 + 3
+print(phraseHasMoreThan43Characters)
