@@ -125,3 +125,103 @@ func howManyHeadsInARow() -> Int {
 
 let noOfHeads = howManyHeadsInARow()
 print(noOfHeads)
+
+print(howManyHeadsInARow())
+
+//======================
+
+enum MealState {
+    case initial
+    case buyIngredients
+    case prepareIngredients
+    case cook
+    case plateUp
+    case serve
+}
+
+enum MealError: Error {
+    case canOnlyMoveToAppropriateState
+    case tooMuchSalt
+    case wrongStateToAddSalt
+}
+
+class Meal {
+    // private(set)외부에서 읽기만 가능하고, 내부에서는 쓰기가 가능하도록 하는 간결한 코드
+    // 다른 언어의 getter, setter와 역할이 같다.
+    private(set) var state: MealState = .initial
+    private(set) var saltAdded = 0
+    
+    func change(to newState: MealState) throws {
+        switch (state, newState) {
+        case (.initial, .buyIngredients),
+            (.buyIngredients, .prepareIngredients),
+            (.prepareIngredients, .cook),
+            (.cook, .plateUp),
+            (.plateUp, .serve):
+            state = newState
+        default:
+            throw MealError.canOnlyMoveToAppropriateState
+        }
+    }
+    
+    func addSalt() throws {
+        print("addSalt >> \(saltAdded) / \(state)")
+        if saltAdded >= 5 {
+            throw MealError.tooMuchSalt
+        } else if .initial == state || .buyIngredients == state {
+            throw MealError.wrongStateToAddSalt
+        } else {
+            saltAdded += 1
+        }
+    }
+    
+    // change 함수에서 던져진 에러를 받으려면 change 함수를 감싸는 함수도 throws 키워드가 있어야 에러를 던질 수 있다.
+    // throws 키워드가 있다면 에러 처리의 마지막에 항상 에러를 받을 수 있도록 해야한다.
+    func buyIngredients() throws {
+        try change(to: .buyIngredients)
+    }
+    func prepareIngredients() throws {
+        try change(to: .prepareIngredients)
+    }
+    func cook() throws {
+        try change(to: .cook)
+    }
+    func plateUp() throws {
+        try change(to: .plateUp)
+    }
+    func serve() throws {
+        try change(to: .serve)
+    }
+}
+
+let dinner = Meal()
+
+do {
+    //    try dinner.change(to: .buyIngredients)
+    //    try dinner.change(to: .prepareIngredients)
+    //    try dinner.change(to: .cook)
+    //    try dinner.change(to: .plateUp)
+    //    try dinner.change(to: .serve)
+    
+    try dinner.buyIngredients()
+    try dinner.prepareIngredients()
+    try dinner.cook()
+    try dinner.plateUp()
+    try dinner.serve()
+    try dinner.addSalt()
+    try dinner.addSalt()
+    try dinner.addSalt()
+    try dinner.addSalt()
+    try dinner.addSalt()
+    try dinner.addSalt()
+    
+    print("Dinner is ready!")
+} catch MealError.canOnlyMoveToAppropriateState {
+    print("there are missing steps")
+} catch MealError.tooMuchSalt {
+    print("It's too salty!")
+} catch MealError.wrongStateToAddSalt {
+    print("You can't add the salt in this state")
+}
+
+
