@@ -108,3 +108,23 @@ print(squareOrTriangularNotBoth.count) // 5
 let squareNotOdd = squareNumbers.subtracting(oddNumbers) // 4
 print(squareNotOdd.count) // 1
 
+
+let animalKingdom: Set<String> = ["dog", "cat", "pigeon", "chimpanzee", "snake", "kangaroo", "giraffe", "elephant", "tiger", "lion", "panther"]
+let vertebrates: Set<String> = ["dog", "cat", "pigeon", "chimpanzee", "snake", "kangaroo", "giraffe", "elephant", "tiger", "lion", "panther"]
+let reptile: Set<String> = ["snake"]
+let mammals: Set<String> = ["dog", "cat", "chimpanzee", "kangaroo", "giraffe", "elephant", "tiger", "lion", "panther"]
+let catFamily: Set<String> = ["cat", "tiger", "lion", "panther"]
+let domesticAnimals: Set<String> = ["cat", "dog"]
+
+print(mammals.isSubset(of: animalKingdom))
+print(mammals.isSuperset(of: catFamily))
+
+print(vertebrates.isStrictSubset(of: animalKingdom))
+print(vertebrates.isSubset(of: animalKingdom))
+print(mammals.isStrictSubset(of: animalKingdom))
+
+print(animalKingdom.isStrictSuperset(of: vertebrates))
+print(animalKingdom.isStrictSuperset(of: domesticAnimals))
+
+// 서로소(Disjoint)
+print(catFamily.isDisjoint(with: reptile))
