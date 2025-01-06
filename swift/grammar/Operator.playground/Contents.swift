@@ -1,8 +1,6 @@
 /*:
- ## Bit wise 연산자
+ ## 3 Bit wise 연산자
  */
-
-
 // 이진수에 대한 상수 정의
 let zero: Int = 0b000
 let one: Int = 0b001
@@ -94,13 +92,62 @@ struct Devices: OptionSet {
     static let supportsUIKit: Devices = [.phone, .tablet, .tv]
 }
 
-
 let supportedDevices: Devices = [.phone, .tablet, .watch, .tv]
 
+// 포함 여부를 확인할 수 있다.
 let phoneIsSupported = supportedDevices.contains(.phone)
 
-// Union / OR
+// Union / OR (합집합)
 let stationaryOrUIKitDevices = Devices.supportsUIKit.union(Devices.stationary)
 
-// Intersection / AND
+// Intersection / AND (교집합)
 let stationaryAndUIKitDevices = Devices.supportsUIKit.intersection(Devices.stationary)
+
+/*:
+## 사용자 정의 연산자
+ 연산자를 커스텀하여 원하는 동작을 하도록 만들 수 있다.
+ */
+infix operator >>>
+
+func >>> (lhs: String, rhs: String) -> String {
+    var combined = rhs
+    combined.append(lhs)
+    return combined
+}
+
+//func >>> (lhs: String, rhs: [String]) -> [String] {
+//    var combined = rhs
+//    combined.append(lhs)
+//    return combined
+//}
+//
+//func >>> (lhs: [String], rhs: [String]) -> [String] {
+//    var combined = rhs
+//    combined.append(contentsOf: lhs)
+//    return combined
+//}
+
+// Generic을 활용한 커스텀 연산자
+func >>> <Element>(lhs: Element, rhs: Array<Element>) -> Array<Element>  {
+    var combined = rhs
+    combined.append(lhs)
+    return combined
+}
+
+func >>> <Element>(lhs: Array<Element>, rhs: Array<Element>) -> Array<Element> {
+    var combined = rhs
+    combined.append(contentsOf: lhs)
+    return combined
+}
+
+let appendedString = "Two" >>> "One"
+print(appendedString)
+
+let appendStrArr = "Three" >>> ["One", "Two"]
+print(appendStrArr)
+
+let appendArrArr = ["Three", "Four"] >>> ["One", "Two"]
+print(appendStrArr)
+
+let appendIntToArray = 1 >>> [3, 4]
+print(appendIntToArray)
