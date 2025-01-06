@@ -36,7 +36,9 @@ class TicTacToe: GameState {
         // TODO: 플레이어 이동 메서드 구현
         if (isValidMove(row: row, column: column)) {
             board[row][column] = currentPlayer
-            currentPlayer = currentPlayer == .x ? .o : .x
+            defer {
+                currentPlayer = currentPlayer == .x ? .o : .x
+            }
             return true
         }
         return false
@@ -55,6 +57,7 @@ class TicTacToe: GameState {
             let fstPiece = board[0][column]
             if (fstPiece != .empty && fstPiece == board[1][column] && fstPiece == board[2][column]) {return fstPiece}
         }
+        // check diagonal win conditions
         if (board[0][0] != .empty && board[0][0] == board[1][1] && board[0][0] == board[2][2]) {return board[0][0]}
         if (board[0][2] != .empty && board[0][2] == board[1][1] && board[0][2] == board[2][0]) {return board[0][2]}
         

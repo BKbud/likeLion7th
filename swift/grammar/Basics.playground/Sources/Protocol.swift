@@ -8,6 +8,7 @@ import Foundation
 
 public func runProtocol() {
     // 특정 메서드를 가지도록 강요할 수 있다. 프레임워크처럼 구조에 대한 규약을 제공한다.
+    // 게임의 버프같은 존재
     protocol Describable {
         var description: String { get }
     }

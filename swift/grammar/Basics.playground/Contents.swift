@@ -224,4 +224,7 @@ do {
     print("You can't add the salt in this state")
 }
 
+//======guard & defer======
+
+//defer: 작성된 위치와 상관 없이 함수 종료 직전에 실행되는 구문
 
