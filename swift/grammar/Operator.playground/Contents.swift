@@ -74,7 +74,7 @@ let statinaryDevice = desktop + tv
 //print(orIsUnion)
 
 /// OptionSet: Adopting this protocol in your custom types lets you perform set-related operations such as membership tests, unions, and intersections on those types.
-/// 비트의 집합으로 자료구조 중에서 Set의 특징을 가지고 있는 자료구조
+/// 비트의 집합으로 Set의 특징을 가진 자료구조. 집합 연산, 포함 여부 등을 확인하는 식으로 사용할 수 있다.
 struct Devices: OptionSet {
     var rawValue: Int
     

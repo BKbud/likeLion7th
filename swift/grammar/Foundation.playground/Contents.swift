@@ -1,7 +1,7 @@
 
 import Foundation
 
-// Calendar, TimeZone 과 같은 객체가 Foundation에 정의되어있음
+// 앱을 만드는데 필요한 기본 기능들(Calendar, TimeZone, Date 등)을 정의해놓은 프레임워크
 func howLongUntilHalloween() -> String {
     let calendar = Calendar.current
     let timeZone = TimeZone.current
@@ -23,7 +23,7 @@ func howLongUntilHalloween() -> String {
     }
     
     /// DateComponentsFormatter: formats them as a user-readable string.
-    let componentFormatter = DateComponentsFormatter() // 날짜 표기 방식을 변경할 수 있는 객체(?)
+    let componentFormatter = DateComponentsFormatter() // 날짜 표기 방식을 변경할 수 있는 객체
     componentFormatter.unitsStyle = .full // 날짜 표기 스타일 정의
     componentFormatter.allowedUnits = [.month, .day, .hour, .minute, .second] // 표기할 요소 정의
     
