@@ -86,3 +86,38 @@ class MyClass: MessageBuilder {
     }
 }
 
+// 상속, 재정의, super 키워드
+class SavingsAccount: BankAccount {
+    var interestRate: Float = 0.0
+    
+    init(number: Int, balance: Float, rate: Float) {
+        self.interestRate = rate
+        super.init(number: number, balance: balance)
+    }
+    
+    func calculateInterest() -> Float {
+        return interestRate * accountBalance
+    }
+    
+    override func displayBalance() {
+        super.displayBalance()
+        print("현재 이자율: \(interestRate)")
+    }
+}
+let savings1 = SavingsAccount(number: 12312312, balance: 400.54, rate: 0.05)
+print(savings1.calculateInterest())
+savings1.displayBalance()
+
+extension Double {
+    var squared: Double {
+        return self * self
+    }
+    
+    var cubed: Double {
+        return self * self * self
+    }
+}
+
+let squaredNum: Double = 3
+print(squaredNum.squared)
+print(squaredNum.cubed)
