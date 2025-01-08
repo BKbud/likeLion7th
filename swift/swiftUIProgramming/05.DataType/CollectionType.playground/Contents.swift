@@ -58,9 +58,10 @@ var myDictionary = [Int: String]()
 let keys = ["100-432112", "200-532874", "202-546549", "104-109834"]
 let values = ["Wind in the Willows", "Tale of Two Cities", "Sense and Sensibility", "Shutter Island"]
 
+// zip을 사용한다고 해서
 var bookDict = Dictionary(uniqueKeysWithValues: zip(keys, values))
 print(bookDict.count)
-print(bookDict["200-532874"] ?? "Book not found")
+print(bookDict["200-532874"] ?? "Book not found") //dictionary value는 옵셔널 타입을 갖는다. 따라서 값을 사용할 떄 항상 unwrapping을 해주어야 한다.
 
 bookDict.updateValue("The Ruins", forKey: "200-532874")
 
