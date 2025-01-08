@@ -28,4 +28,4 @@ do {
     try transferFile()
 } catch FileTransferError.noConnection {
     
-} catch { return }
+}
