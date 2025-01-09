@@ -28,6 +28,7 @@ import SwiftUI
 //                    Text("-")
 //                        .font(.largeTitle)
 //                        .padding()
+// ios 15 이후로는 safearea가 전체적으로 채워지는게 기본으로 변경되었다.
 //                        .background(Color.gray)
 //                        .foregroundStyle(.white)
 //                        .clipShape(Circle())
@@ -231,6 +232,7 @@ struct ContentView: View {
             Toggle("Enable Wi-Fi", isOn: $wifiEnabled)
             TextField("Enter user name", text: $userName)
             WifiImageView(wifiEnabled: $wifiEnabled)
+            Text(userName)
         }
     }
 }
