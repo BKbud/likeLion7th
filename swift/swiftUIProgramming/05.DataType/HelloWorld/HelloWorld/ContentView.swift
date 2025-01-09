@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//------------counter app--------------
 //struct ContentView: View {
 //    //상태를 관리하는 프로퍼티
 //    @State private var count = 0
@@ -55,7 +56,7 @@ import SwiftUI
 //    }
 //}
 
-// ----------custom label-----------
+// ---------------custom label--------------------
 //// View 프로토콜을 따르는 Generic type 'MyContent'
 //struct MyVStack<MyContent: View>: View {
 //    let content: () -> MyContent
@@ -172,39 +173,54 @@ import SwiftUI
 //    
 //}
 
-//--------동적 Stack----------
+//----------------동적 Stack------------
+//struct ContentView: View {
+//    @State var myLayout: AnyLayout = AnyLayout(VStackLayout())
+//    
+//    var body: some View {
+//        myLayout {
+//            Text("Sample Text")
+//            Text("Sample Text")
+//            Text("Sample Text")
+//        }
+//        HStack {
+//            Button(action: {
+//                myLayout = AnyLayout(HStackLayout())
+//            }) {
+//                Text("HStack")
+//            }
+//            Button(action: {
+//                myLayout = AnyLayout(VStackLayout())
+//            }) {
+//                Text("VStack")
+//            }
+//        }
+//        
+//        HStack {
+//            Image(systemName: "airplane")
+//            Text("Flight times:")
+//                .layoutPriority(1) // 우선순위 부여
+//            Text("London")
+//        }
+//        .font(.largeTitle)
+//        .lineLimit(1) // 글씨 크기로 인해 줄 바뀜을 제한
+//    }
+//}
+
+// -----------------Frame------------------
 struct ContentView: View {
-    @State var myLayout: AnyLayout = AnyLayout(VStackLayout())
-    
     var body: some View {
-        myLayout {
-            Text("Sample Text")
-            Text("Sample Text")
-            Text("Sample Text")
-        }
-        HStack {
-            Button(action: {
-                myLayout = AnyLayout(HStackLayout())
-            }) {
-                Text("HStack")
-            }
-            Button(action: {
-                myLayout = AnyLayout(VStackLayout())
-            }) {
-                Text("VStack")
-            }
-        }
-        
-        HStack {
-            Image(systemName: "airplane")
-            Text("Flight times:")
-                .layoutPriority(1) // 우선순위 부여
-            Text("London")
-        }
-        .font(.largeTitle)
-        .lineLimit(1) // 글씨 크기로 인해 줄 바뀜을 제한
+        Text("Hello World")
+            .font(.largeTitle)
+            .frame(minWidth: 100, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+            .border(Color.black)
+            .background(Color.cyan)
+//            .ignoresSafeArea(.all)
     }
 }
+//--------------GeometrReader------------
+
+
 
 #Preview {
     ContentView()
