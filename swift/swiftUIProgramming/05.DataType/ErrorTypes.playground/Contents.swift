@@ -24,8 +24,16 @@ func transferFile() throws { // 예외를 던지는 함수라는 것을 알 수 
     // 파일 전송 로직...
 }
 
-do {
-    try transferFile()
-} catch FileTransferError.noConnection {
-    
+func sendFile() -> String {
+    do {
+        try transferFile()
+    } catch FileTransferError.fileNotFound {
+        return "File Not Found"
+    } catch FileTransferError.lowBandwidth, FileTransferError.noConnection {
+        return "Low Bandwidth or Connection Error"
+    } catch {
+        return "Unkown Error"
+    }
+    return "Successful transfer"
 }
+

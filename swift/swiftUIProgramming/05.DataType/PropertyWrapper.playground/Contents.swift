@@ -66,7 +66,8 @@ struct IntDemo {
 
 var demo = IntDemo()
 print(demo.value)
-demo.value = 150
+print(demo.value = 150)
+//demo.value = 150
 print(demo.value) // 출력: 150
 
 demo.value = 250
