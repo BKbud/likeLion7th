@@ -208,19 +208,40 @@ import SwiftUI
 //}
 
 // -----------------Frame------------------
-struct ContentView: View {
-    var body: some View {
-        Text("Hello World")
-            .font(.largeTitle)
-            .frame(minWidth: 100, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-            .border(Color.black)
-            .background(Color.cyan)
-//            .ignoresSafeArea(.all)
-    }
-}
+//struct ContentView: View {
+//    var body: some View {
+//        Text("Hello World")
+//            .font(.largeTitle)
+//            .frame(minWidth: 100, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+//            .border(Color.black)
+//            .background(Color.cyan)
+////            .ignoresSafeArea(.all)
+//    }
+//}
 //--------------GeometrReader------------
 
 
+//-------------state---------
+struct ContentView: View {
+    @State private var wifiEnabled = true
+    @State private var userName = ""
+    
+    var body: some View {
+        VStack {
+            Toggle("Enable Wi-Fi", isOn: $wifiEnabled)
+            TextField("Enter user name", text: $userName)
+            WifiImageView(wifiEnabled: $wifiEnabled)
+        }
+    }
+}
+
+struct WifiImageView: View {
+    @Binding var wifiEnabled : Bool
+    
+    var body: some View {
+        Image(systemName: wifiEnabled ? "wifi" : "wifi.slash")
+    }
+}
 
 #Preview {
     ContentView()
