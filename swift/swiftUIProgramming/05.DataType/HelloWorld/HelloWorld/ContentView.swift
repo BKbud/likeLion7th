@@ -28,7 +28,7 @@ import SwiftUI
 //                    Text("-")
 //                        .font(.largeTitle)
 //                        .padding()
-// ios 15 이후로는 safearea가 전체적으로 채워지는게 기본으로 변경되었다.
+//// ios 15 이후로는 safearea가 전체적으로 채워지는게 기본으로 변경되었다.
 //                        .background(Color.gray)
 //                        .foregroundStyle(.white)
 //                        .clipShape(Circle())
@@ -211,39 +211,53 @@ import SwiftUI
 // -----------------Frame------------------
 //struct ContentView: View {
 //    var body: some View {
-//        Text("Hello World")
-//            .font(.largeTitle)
-//            .frame(minWidth: 100, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-//            .border(Color.black)
-//            .background(Color.cyan)
-////            .ignoresSafeArea(.all)
+//        VStack {
+//            Text("Hello World")
+//                .font(.largeTitle)
+//                .frame(minWidth: 100, maxWidth: .infinity, minHeight: 2000, maxHeight: .infinity)
+//                .border(Color.black)
+//                .background(Color.cyan)
+//            Text("Hello World")
+//                .font(.largeTitle)
+//                .frame(minWidth: 100, maxWidth: .infinity, minHeight: 2000, maxHeight: .infinity)
+//                .border(Color.black)
+//                .background(Color.cyan)
+//    //            .ignoresSafeArea(.all)
+//        }
+//       
 //    }
 //}
 //--------------GeometrReader------------
 
+//-------------state---------------
+//struct ContentView: View {
+//    @State private var wifiEnabled = true
+//    @State private var userName = ""
+//    
+//    var body: some View {
+//        VStack {
+//            Toggle("Enable Wi-Fi", isOn: $wifiEnabled)
+//            TextField("Enter user name", text: $userName)
+//            WifiImageView(wifiEnabled: $wifiEnabled)
+//            Text(userName)
+//        }
+//    }
+//}
+//
+//struct WifiImageView: View {
+//    @Binding var wifiEnabled : Bool
+//    
+//    var body: some View {
+//        Image(systemName: wifiEnabled ? "wifi" : "wifi.slash")
+//    }
+//}
 
-//-------------state---------
-struct ContentView: View {
-    @State private var wifiEnabled = true
-    @State private var userName = ""
-    
-    var body: some View {
-        VStack {
-            Toggle("Enable Wi-Fi", isOn: $wifiEnabled)
-            TextField("Enter user name", text: $userName)
-            WifiImageView(wifiEnabled: $wifiEnabled)
-            Text(userName)
-        }
-    }
-}
+//-------------구조화된 비동기--------------
 
-struct WifiImageView: View {
-    @Binding var wifiEnabled : Bool
-    
-    var body: some View {
-        Image(systemName: wifiEnabled ? "wifi" : "wifi.slash")
-    }
-}
+//struct ContentView: View {
+//    var body: some View {
+//
+//    }
 
 #Preview {
     ContentView()
