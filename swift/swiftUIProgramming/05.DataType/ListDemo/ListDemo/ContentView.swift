@@ -5,13 +5,13 @@
 //  Created by 정보경 on 1/14/25.
 //
 
-struct ToDoItem: Identifiable {
+import SwiftUI
+
+struct ToDoItem: Identifiable, Hashable {
     var id = UUID()
     var task: String
     var imageName: String
 }
-
-import SwiftUI
 
 struct ContentView: View {
     
@@ -25,19 +25,42 @@ struct ContentView: View {
     
     var body: some View {
         
-        List {
-            Section(header: Text("Settings")) {
-                Toggle(isOn: $toggleStatus) {
-                    Text("Allow notifications")
-                }
-            }
-            Section(header: Text("To Do Task")) {
-                ForEach (listData) { item in
-                    HStack {
-                        Image(systemName: item.imageName)
-                        Text(item.task)
+        NavigationStack {
+            List {
+                Section(header: Text("Settings")) {
+                    Toggle(isOn: $toggleStatus) {
+                        Text("Allow notifications")
+                    }
+                    NavigationLink(value: listData.count) {
+                        Text("View Task Count")
                     }
                 }
+                Section(header: Text("To Do Task")) {
+                    ForEach (listData) { item in
+                        NavigationLink(value: item.task) {
+                            HStack {
+                                Image(systemName: item.imageName)
+                                Text(item.task)
+                            }
+                        }
+                    }
+                }
+            }
+            // 네비바 타이틀 지정
+            .navigationTitle(Text("To Do List"))
+            //            .navigationBarItems(trailing: Button("ADD", action: {}))
+            .toolbar(content: {
+                ToolbarItem(placement: .primaryAction,
+                            content: { Button("Add", action: {})})
+            })
+            .navigationDestination(for: ToDoItem.self) { item in
+                Text("My task = \(item.task)")
+            }
+            .navigationDestination(for: Int.self) { count in
+                Text("Number of tasks = \(count)")
+            }
+            .navigationDestination(for: String.self) { task in
+                Text("Selected task = \(task)")
             }
         }
         .refreshable {
