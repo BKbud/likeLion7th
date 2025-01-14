@@ -5,24 +5,36 @@
 //  Created by 정보경 on 1/14/25.
 //
 
+extension VerticalAlignment {
+    private enum CrossAlignment: AlignmentID {
+        static func defaultValue(in d: ViewDimensions) -> CGFloat {
+            return d[.top]
+        }
+    }
+    static let crossAlignment = VerticalAlignment(CrossAlignment.self)
+}
+
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(alignment: .leading) {
+        HStack(alignment: .crossAlignment, spacing: 20) {
             Rectangle()
                 .fill(Color.green)
-                .frame(width: 120, height: 50)
+                .frame(width: 40, height: 100)
             Rectangle()
                 .fill(Color.red)
-                //뷰의 위치 값을 게산하여 넘겨준다.
-                .alignmentGuide(.leading, computeValue: {
-                    dimensions in dimensions.width / 3
-                })
-                .frame(width: 200, height: 50)
+                .frame(width: 40, height: 100)
             Rectangle()
                 .fill(Color.blue)
-                .frame(width: 180, height: 50)
+                .alignmentGuide(.crossAlignment, computeValue: { d in
+                    d[VerticalAlignment.center]
+                })
+                .frame(width: 40, height: 100)
+            Rectangle()
+                .fill(Color.yellow)
+                .frame(width: 40, height: 100)
+            
         }
     }
 }
