@@ -8,18 +8,33 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    private var colors: [Color] = [.blue, .yellow, .green]
-    private var gridItems = [ GridItem(.adaptive(minimum: 50))]
-    
     var body: some View {
-        ScrollView(.horizontal) {
-            LazyHGrid(rows: gridItems, spacing: 5) {
-                ForEach((0...30), id: \.self) { index in
-                    CellContent(index: index, color: colors[index % colors.count])
+        Grid {
+            GridRow {
+                ForEach(1...5, id: \.self) { index in
+                    CellContent(index: index, color: .red)
                 }
             }
+            GridRow {
+                ForEach(6...10, id: \.self) { index in
+                    CellContent(index: index, color: .blue)
+                }
+            }
+            GridRow {
+                ForEach(11...15, id: \.self) { index in
+                    CellContent(index: index, color: .green)
+                }
+            }
+            CellContent(index: 16, color: .blue)
+            
+            GridRow {
+                CellContent(index: 17, color: .orange)
+                    .gridCellColumns(2)
+                CellContent(index: 18, color: .purple)
+                    .gridCellColumns(3)
+            }
         }
+        .padding()
     }
 }
 
