@@ -18,11 +18,13 @@ struct MonthlyTemp: Identifiable {
 let tempData: [MonthlyTemp] = [
     MonthlyTemp(month: "Jan", degrees: 50),
     MonthlyTemp(month: "Feb", degrees: 43),
-    MonthlyTemp(month: "Mar", degrees: 61)
+    MonthlyTemp(month: "Mar", degrees: 61),
+    MonthlyTemp(month: "Apr", degrees: 33)
 ]
 
 struct ContentView: View {
     var body: some View {
+        // 배열을 넘겨주어 모든 데이터를 간단하게 다룰 수 있다.
         Chart(tempData) { data in
             AreaMark(
                 x: .value("Month", data.month),
