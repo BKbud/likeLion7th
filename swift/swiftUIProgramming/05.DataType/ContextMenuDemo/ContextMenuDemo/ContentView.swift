@@ -9,10 +9,31 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State private var offset: CGSize = .zero
+    
     @State private var foregroundColor: Color = .accentColor
     @State private var backgroundColor: Color = .black
     
+    @State var isChanged: Bool = false
+    
     var body: some View {
+        Circle()
+            .fill(isChanged ? Color.black : Color.blue)
+            .frame(width: 100, height: 100)
+            .offset(offset)
+            .gesture(
+                DragGesture()
+                    .onChanged { gesture in
+                        withAnimation {
+                            self.offset = gesture.translation
+                        }
+                    }
+                    .onEnded { _ in
+                        withAnimation(.spring()) {
+                            self.offset = .zero
+                        }
+                    }
+            )
         Text("Hello, World!")
             .font(.largeTitle)
             .padding()
@@ -23,12 +44,14 @@ struct ContentView: View {
                 Button(action: {
                     self.foregroundColor = .accentColor
                     self.backgroundColor = .black
+                    self.isChanged = false
                 }, label: { Text("Normal Color")
                     Image(systemName: "paintbrush")
                 })
                 Button(action: {
                     self.foregroundColor = .black
                     self.backgroundColor = .accentColor
+                    self.isChanged = true
                 }, label: {
                     Text("Inverted Colors")
                     Image(systemName: "paintbrush.fill")
