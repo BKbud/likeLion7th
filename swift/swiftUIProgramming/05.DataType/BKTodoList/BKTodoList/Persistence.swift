@@ -1,8 +1,8 @@
 //
 //  Persistence.swift
-//  CoreDataDemo
+//  BKTodoList
 //
-//  Created by 정보경 on 1/16/25.
+//  Created by 정보경 on 1/17/25.
 //
 
 import CoreData
@@ -14,9 +14,9 @@ struct PersistenceController {
     static let preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for i in 0..<10 {
-            let newItem = Product(context: viewContext)
-            newItem.name = "Product \(i)"
+        for _ in 0..<5 {
+            let newItem = Item(context: viewContext)
+            newItem.contents = "Empty"
         }
         do {
             try viewContext.save()
@@ -29,14 +29,14 @@ struct PersistenceController {
         return result
     }()
 
-    let container: NSPersistentCloudKitContainer // 영구 컨테이너 정의
+    let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "CoreDataDemo") // 컨테이너 이름 전달
+        container = NSPersistentContainer(name: "BKTodoList")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in // 영구 컨테이너 생성
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
