@@ -16,8 +16,10 @@ struct ContentView: View {
     
     // 데이터 조회: 영구 저장소의 데이터를 불러옵니다. 아래 코드는 Item 엔티티에 대한 데이터를 가져옵니다.
     // sortDescriptors에서는 데이터 정렬 기준을 정의합니다.
-    @FetchRequest(entity: Item.entity(), sortDescriptors: [])
+    @FetchRequest(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Item.createdAt, ascending: true)])
     private var items: FetchedResults<Item>
+    
+    @State private var searchQuery = ""
     
     var body: some View {
         
@@ -26,6 +28,16 @@ struct ContentView: View {
                 .font(.system(size: 25))
                 .foregroundStyle(Color.indigo)
                 .bold()
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .resizable()
+                    .frame(width: 25, height: 25)
+                    .foregroundStyle(Color.indigo)
+                TextField("Search by contents", text: $searchQuery)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(5)
+            }
+            .padding()
             List {
                 ForEach(items) { item in
                     ListCellView(item: item) {
@@ -41,7 +53,7 @@ struct ContentView: View {
                         .foregroundStyle(Color.indigo)
                         
                 }
-                .padding()
+                .padding(8)
             }
         }
     }
@@ -61,6 +73,7 @@ struct ContentView: View {
             let newItem = Item(context: viewContext) // 새로운 아이템 생성
             newItem.contents = "" // 값 초기화
             newItem.isOn = false
+            newItem.createdAt = Date()
             
             saveContext()
         }
@@ -81,22 +94,6 @@ struct ContentView: View {
     }
     
 }
-
-// 리스트 셀을 위한 커스텀 뷰
-//struct ListCell: View {
-//
-//    var viewContext: NSManagedObjectContext
-//
-//    var body: some View {
-//        HStack {
-//            Toggle(isOn: self.$isOn) {
-//                TextField("Enter task...", text: $contents)
-//            }
-//            .toggleStyle(CheckboxToggleStyle())
-//
-//        }
-//    }
-//}
 
 #Preview {
     ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)

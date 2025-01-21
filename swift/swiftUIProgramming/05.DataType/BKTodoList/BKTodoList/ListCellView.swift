@@ -34,13 +34,20 @@ struct ListCellView: View {
                     saveContext()
                 })
                 .toggleStyle(CheckboxToggleStyle())
-            TextField("Enter your task...", text: $contents)
-                .onChange(of: contents) { oldValue, newValue in
-                    item.contents = contents
-                    saveContext()
-                }
+            VStack {
+                TextField("Enter your task...", text: $contents)
+                    .onChange(of: contents) { oldValue, newValue in
+                        item.contents = contents
+                        saveContext()
+                    }
+                    .strikethrough(item.isOn)
+                Text("\(item.createdAt ?? Date()), format: Date.FormatStyle(date: .numeric, time: .standard))")
+                    .font(.caption)
+                    .lineLimit(1)
+                    .foregroundStyle(.gray)
+            }
+            .padding(8)
         }
-        .padding()
     }
 }
 
