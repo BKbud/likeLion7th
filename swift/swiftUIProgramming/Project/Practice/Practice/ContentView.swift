@@ -7,15 +7,23 @@
 
 import SwiftUI
 
+struct City: Identifiable {
+    var id: Int
+    var name: String
+}
+
 struct ContentView: View {
+    @State private var cities: [City] = [City(id: 1, name: "aa"),
+                                         City(id: 2, name: "bb"),
+                                         City(id: 3, name: "cc")]
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            ForEach(cities) { city in
+                Text(city.name)
+            }
         }
-        .padding()
+        .tabViewStyle(.page)
     }
 }
 
