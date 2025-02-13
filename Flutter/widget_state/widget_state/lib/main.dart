@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -55,26 +56,100 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.grey,
       // body 속성에 Center 위젯을 사용하여 화면 중앙에 컨텐츠를 배치
-      body: Center(
-        child: Container(
-            width: 300,
-            height: 380,
-            color: Colors.white,
+      body: _buildContainer(context),
+    );
+  }
+
+  Widget _buildContainer(BuildContext context) {
+    // LayoutBuilder 위젯: 부모 위젯의 크기에 따라 자식 위젯의 레이아웃을 동적으로 변경
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (kDebugMode) {
+          debugPrint('constraints.maxWidth: ${constraints.maxWidth}');
+        }
+        if (constraints.maxWidth > 600) {
+          return _buildWideContainers();
+        } else {
+          return _buildNarrowContainers();
+        }
+      },
+    );
+  }
+
+  Widget _buildWideContainers() {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            color: Colors.red,
             child: Center(
-              child: RichText(
-                text: TextSpan(children: [
-                  TextSpan(
-                      text: 'Hello',
-                      style: Theme.of(context).textTheme.bodyLarge),
-                  TextSpan(text: ' '),
-                  TextSpan(
-                      text: 'Flutter',
-                      style: Theme.of(context).textTheme.bodyMedium),
-                  TextSpan(text: ' '),
-                ]),
+              child: Text(
+                'Red',
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
-            )),
-      ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.green,
+            child: Center(
+              child: Text(
+                'Green',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.blue,
+            child: Center(
+              child: Text(
+                'Blue',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildNarrowContainers() {
+    return Column(
+      children: [
+        Container(
+          color: Colors.red,
+          height: 100,
+          child: Center(
+            child: Text(
+              'Red',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          ),
+        ),
+        Container(
+          color: Colors.green,
+          height: 100,
+          child: Center(
+            child: Text(
+              'Green',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          ),
+        ),
+        Container(
+          color: Colors.blue,
+          height: 100,
+          child: Center(
+            child: Text(
+              'Blue',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
