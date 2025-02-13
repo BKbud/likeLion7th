@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // 메인 함수
 void main() {
@@ -14,14 +15,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Google Fonts Demo',
+      debugShowCheckedModeBanner: false,
       // 테마 설정
       theme: ThemeData(
-        // 색상 스키마 설정
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        // 머테리얼 3.0 테마 설정
-        useMaterial3: true,
-      ),
+          // 기본 색상 스키마 설정
+          primarySwatch: Colors.blue,
+          textTheme: TextTheme(
+            bodyLarge:
+                GoogleFonts.aBeeZee(fontSize: 30, color: Colors.deepOrange),
+            bodyMedium:
+                GoogleFonts.aBeeZee(fontSize: 18, color: Colors.grey[700]),
+          )),
       // 홈 페이지 설정
       // 타이틀 파라미터 전달
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -52,20 +57,22 @@ class _MyHomePageState extends State<MyHomePage> {
       // body 속성에 Center 위젯을 사용하여 화면 중앙에 컨텐츠를 배치
       body: Center(
         child: Container(
-            width: 200,
-            height: 180,
+            width: 300,
+            height: 380,
             color: Colors.white,
-            child: Column(
-              children: [
-                Image.network('https://picsum.photos/200/100'),
-                SizedBox(
-                  height: 10,
-                ),
-                Text('Hello, World!',
-                    style: TextStyle(fontSize: 20, color: Colors.indigo)),
-                Text('Dart & Flutter',
-                    style: TextStyle(fontSize: 16, color: Colors.deepPurple)),
-              ],
+            child: Center(
+              child: RichText(
+                text: TextSpan(children: [
+                  TextSpan(
+                      text: 'Hello',
+                      style: Theme.of(context).textTheme.bodyLarge),
+                  TextSpan(text: ' '),
+                  TextSpan(
+                      text: 'Flutter',
+                      style: Theme.of(context).textTheme.bodyMedium),
+                  TextSpan(text: ' '),
+                ]),
+              ),
             )),
       ),
     );
