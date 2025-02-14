@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// TextFieldDemo는 텍스트 필드 예제를 보여주는 StatelessWidget입니다.
 class TextFieldDemo extends StatelessWidget {
   const TextFieldDemo({super.key});
 
@@ -10,19 +9,17 @@ class TextFieldDemo extends StatelessWidget {
   }
 }
 
-// TextFieldExample은 텍스트 필드와 값을 표시하는 AlertDialog를 포함하는 StatefulWidget입니다.
 class TextFieldExample extends StatefulWidget {
   const TextFieldExample({super.key});
 
+  // createState(): Flutter 프레임워크가 StatefulWidget의 State 객체를 생성해야 할 때 호출하는 메서드
+  // State 클래스의 인스턴스를 반환하는 createState() 메서드를 구현
   @override
   State<TextFieldExample> createState() => _TextFieldExampleState();
 }
 
-// _TextFieldExampleState는 TextFieldExample의 상태를 관리합니다.
 class _TextFieldExampleState extends State<TextFieldExample> {
-  // _controller는 텍스트 필드의 값을 제어합니다.
   final TextEditingController _controller = TextEditingController();
-  // _passwordController는 비밀번호 텍스트 필드의 값을 제어합니다.
   final TextEditingController _passwordController = TextEditingController();
 
   @override
@@ -38,16 +35,17 @@ class _TextFieldExampleState extends State<TextFieldExample> {
           children: <Widget>[
             // TextField는 사용자로부터 텍스트 입력을 받는 위젯입니다.
             TextField(
-              controller: _controller,
-              decoration: const InputDecoration(
-                labelText: 'Enter your username',
-              ),
-            ),
+                controller: _controller,
+                decoration: const InputDecoration(
+                    labelText: 'Enter your username',
+                    prefixIcon: Icon(Icons.person),
+                    border: OutlineInputBorder())),
             TextField(
               controller: _passwordController,
               decoration: const InputDecoration(
-                labelText: 'Enter your password',
-              ),
+                  labelText: 'Enter your password',
+                  prefixIcon: Icon(Icons.password),
+                  border: OutlineInputBorder()),
               // obscureText 속성을 사용하여 입력한 텍스트를 숨깁니다.
               obscureText: true,
             ),
