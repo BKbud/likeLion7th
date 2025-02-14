@@ -1,8 +1,13 @@
 // task 추가 화면을 구성
 import 'package:flutter/material.dart';
+import '../models/task_manager.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  String? newTaskTitle;
+  final TaskManager taskManager;
+  final VoidCallback onTaskAdded; // 콜백 함수
+  final TextEditingController _controller = TextEditingController();
+
+  AddTaskScreen({required this.taskManager, required this.onTaskAdded});
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +24,16 @@ class AddTaskScreen extends StatelessWidget {
                   color: Colors.indigo,
                 )),
             TextField(
-                autofocus: true,
-                onChanged: ((value) {
-                  newTaskTitle = value;
-                })),
+              controller: _controller,
+              decoration: InputDecoration(labelText: 'New Task'),
+              autofocus: true,
+            ),
             SizedBox(height: 20),
             TextButton(
                 onPressed: () {
-                  // save task
+                  if (_controller.text.isNotEmpty) {
+                    _addTask(context);
+                  }
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.indigo,
@@ -38,5 +45,13 @@ class AddTaskScreen extends StatelessWidget {
                     ))),
           ],
         ));
+  }
+
+  void _addTask(BuildContext context) async {
+    final title = _controller.text; // 입력된 텍스트 가져오기
+    await taskManager.addTask(title); // TaskManager를 사용하여 할 일 추가
+    _controller.clear(); // 텍스트 필드 초기화
+    onTaskAdded();
+    Navigator.pop(context); // AddTaskScreen 닫기
   }
 }
