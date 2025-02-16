@@ -38,13 +38,27 @@ class MyApp extends StatelessWidget {
           // allows descendant Widgets to display the correct translations
           // depending on the user's locale.
           localizationsDelegates: const [
+            // 앱에서 사용하는 지역화 문자열을 찾는 데 사용.
             AppLocalizations.delegate,
+
+            // Flutter에서 제공하는 기본적인 위젯들의 다국어 지원을 위한 delegate
+            // Material Design 위젯의 텍스트를 번역한다.
+            // 예: 'OK', 'Cancel' 버튼의 텍스트, 달력의 요일 이름 등
             GlobalMaterialLocalizations.delegate,
+
+            // Flutter 위젯들의 일반적인 텍스트를 위한 delegae
+            // 플랫폼에 따른 텍스트 방향 (LTR, RTL) 등을 처리한다.
             GlobalWidgetsLocalizations.delegate,
+
+            // Cupertino (iOS 스타일) 위젯들의 다국어 지원을 위한 delegate
             GlobalCupertinoLocalizations.delegate,
           ],
+          // settings에 locale 추가
+          locale: settingsController.locale,
+          // supportedLocales에 localize 할 언어 추가
           supportedLocales: const [
             Locale('en', ''), // English, no country code
+            Locale('ko', ''),
           ],
 
           // Use AppLocalizations to configure the correct application title
