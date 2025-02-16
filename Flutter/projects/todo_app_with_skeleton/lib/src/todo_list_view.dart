@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_with_skeleton/src/settings/settings_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TodoListView extends StatefulWidget {
   const TodoListView({super.key});
@@ -14,7 +15,7 @@ class _TodoListViewState extends State<TodoListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Todo App'),
+        title: Text(AppLocalizations.of(context)!.appTitle),
         // actions: A list of Widgets to display in a row after the [title] widget.
         actions: [
           IconButton(

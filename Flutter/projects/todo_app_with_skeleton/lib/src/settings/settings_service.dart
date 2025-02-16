@@ -17,5 +17,5 @@ class SettingsService {
 
   Future<Locale> locale() async => Locale('en');
 
-  Future<void> updateLocale(Locale newLocale) async {}
+  Future<void> updateLocale(Locale locale) async {}
 }
