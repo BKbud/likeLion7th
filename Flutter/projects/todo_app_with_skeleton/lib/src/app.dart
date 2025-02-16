@@ -5,6 +5,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
 
+import 'todo_list_view.dart';
+
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
   const MyApp({
@@ -20,6 +22,8 @@ class MyApp extends StatelessWidget {
     //
     // The ListenableBuilder Widget listens to the SettingsController for changes.
     // Whenever the user updates their settings, the MaterialApp is rebuilt.
+    // ListenableBuilder는 SettingsController의 변화를 감지한다.
+    // 사용자가 setting을 변경하면 MaterialApp이 다시 불려진다.
     return ListenableBuilder(
       listenable: settingsController,
       builder: (BuildContext context, Widget? child) {
@@ -67,8 +71,10 @@ class MyApp extends StatelessWidget {
                 switch (routeSettings.name) {
                   case SettingsView.routeName:
                     return SettingsView(controller: settingsController);
+                  case TodoListView.routeName:
+                    return TodoListView();
                   default:
-                    return const Placeholder();
+                    return const TodoListView();
                 }
               },
             );
