@@ -19,6 +19,7 @@ class _TodoListViewState extends State<TodoListView> {
         actions: [
           IconButton(
               onPressed: () {
+                // .restorablePushNamed: Push a named route onto the navigator that most tightly encloses the given context.
                 Navigator.restorablePushNamed(context, SettingsView.routeName);
               },
               icon: const Icon(Icons.settings))
