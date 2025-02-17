@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
+}
+
+class MyData {
+  final List<String> items = <String>[
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'june',
+    'july',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
-  // This widget is the root of your application.
+  final data = MyData();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +33,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const Placeholder(),
+      home: Scaffold(
+        appBar: AppBar(title: Text('My Data App')),
+        body: ListView.builder(
+          itemCount: data.items.length,
+          itemBuilder: (context, index) {
+            return ListTile(title: Text(data.items[index]));
+          },
+        ),
+      ),
     );
   }
 }
