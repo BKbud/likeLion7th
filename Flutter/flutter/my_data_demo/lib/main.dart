@@ -1,47 +1,13 @@
 import 'package:flutter/material.dart';
+// 파일로만 데이터를 가져오는 방법
+// import '1_basic.dart';
+
+// 파일과 함께 데이터를 가져오는 방법
+// import '2_with_file.dart';
+
+// 파일과 JSON을 사용하여 데이터를 가져오는 방법
+import '3_with_file_and_json.dart';
 
 void main() {
   runApp(MyApp());
-}
-
-class MyData {
-  final List<String> items = <String>[
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'june',
-    'july',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-}
-
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
-
-  final data = MyData();
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: Scaffold(
-        appBar: AppBar(title: Text('My Data App')),
-        body: ListView.builder(
-          itemCount: data.items.length,
-          itemBuilder: (context, index) {
-            return ListTile(title: Text(data.items[index]));
-          },
-        ),
-      ),
-    );
-  }
 }

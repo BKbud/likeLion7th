@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:my_data_demo/3_with_file_and_json.dart' show MyApp;
 
 import 'package:my_data_demo/main.dart';
 
