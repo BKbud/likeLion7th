@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 /*
  * Navigator.of(context).push 네비게이터 스택에 새로운 화면을 push한다.
+ * Navigator.of(context): 이 위젯이 속한 앱의 네비게이션 시스템을 찾아서 사용하겠다"는 의미
  * 볼록 튀어나와보이는 걸 'Elevated'라 표현한다.
  * ElevatedButton: 화면에서 튀어나와보이는 버튼
 */
