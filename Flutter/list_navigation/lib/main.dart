@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:list_navigation/drawer_demo.dart';
 
 import 'shared_preference_demo.dart';
 import 'navigator_demo.dart';
+import 'drawer_demo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: NavigatorDemo(),
+      home: DrawerDemo(),
     );
   }
 }
