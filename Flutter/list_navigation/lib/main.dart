@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:list_navigation/drawer_demo.dart';
 
-import 'shared_preference_demo.dart';
-import 'navigator_demo.dart';
-import 'drawer_demo.dart';
+import 'tab_demo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,9 +15,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        useMaterial3: true,
-      ),
-      home: DrawerDemo(),
+          useMaterial3: true,
+          // themeData의 tabBarTheme 속성을 사용하여 탭바의 색상을 변경
+          tabBarTheme: const TabBarTheme(
+            indicatorColor: Colors.amber, // 선택된 탭 표시 색상
+            labelColor: Colors.amber, // 선택된 탭 텍스트 색상
+            unselectedLabelColor: Colors.grey, // 선택되지 않은 탭 텍스트 색상
+          )),
+      home: TabDemo(),
     );
   }
 }
