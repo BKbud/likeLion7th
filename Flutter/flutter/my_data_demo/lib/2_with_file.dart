@@ -1,5 +1,5 @@
 // plain text 파일을 읽어와서 문자열 데이터를 List<String>으로 변환하여 화면에 출력
-// assets/example.ext 파일을 만들고, 그 파일을 읽어와서 화면에 출력
+// assets/example.txt 파일을 만들고, 그 파일을 읽어와서 화면에 출력
 // pubspec.yaml 파일에 assets 설정을 추가
 // assets:
 //   - assets/example.txt

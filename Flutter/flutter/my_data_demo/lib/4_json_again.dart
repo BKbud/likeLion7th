@@ -35,6 +35,7 @@ void main() {
   // JSON 문자열을 Map으로 반환 => Deserialize 역 직렬화
   String jsonString = '{"name": "김철수", "age":"30"}';
 
+  // jsonDecode: Parses the string and returns the resulting Json object.
   Map<String, dynamic> userMap = jsonDecode(jsonString);
   print(userMap);
 
