@@ -3,6 +3,7 @@ import 'dart:convert';
 /*
  * JSON 데이터 다루기
  * JSON String -> Map<String, dynamic> -> Object 순서로 파싱
+ * Object -> Map<String, dynamic> -> JSON String 역파싱
  */
 class User {
   final String name;
