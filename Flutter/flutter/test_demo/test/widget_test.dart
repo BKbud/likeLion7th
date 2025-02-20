@@ -14,6 +14,7 @@ void main() {
   testWidgets('should allow login', (WidgetTester testWorker) async {
     // Arrange
     // 지정해둔 ValueKey 값으로 원하는 위젯에 접근하여 테스트할 수 있다.
+    // Finder testWidget = find.byKey(ValueKey());
     final testUsername = find.byKey(const ValueKey('testUsername'));
     final testPassword = find.byKey(const ValueKey('testPassword'));
     final testLoginButton = find.byKey(const ValueKey('testLoginButton'));
