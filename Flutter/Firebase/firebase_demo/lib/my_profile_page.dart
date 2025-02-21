@@ -34,7 +34,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
       // 파일 업로드
       final File file = File(pickedImage.path);
       final ref = FirebaseStorage.instance.ref(
-        'profile_images/${FirebaseAuth.instance.currentUser!.uid}.jpg',
+        'profile_images/${FirebaseAuth.instance.currentUser!.uid}',
       );
       await ref.putFile(file);
 
