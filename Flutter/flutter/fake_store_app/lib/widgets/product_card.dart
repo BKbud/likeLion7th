@@ -17,7 +17,7 @@ class ProductCard extends StatelessWidget {
           height: 50,
           fit: BoxFit.cover,
         ),
-        title: const Text('상품 이름'),
+        title: Text(product.title),
         subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
       ),
     );
