@@ -9,7 +9,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 카드가 눌렸을 때 동작 추가 -> InkWell 사용 (onTap 함수를 실행시켜줌)
+    // 카드가 눌렸을 때 동작 추가 -> ListTile의 onTap 사용
     return Card(
       margin: const EdgeInsets.all(8),
       child: ListTile(
