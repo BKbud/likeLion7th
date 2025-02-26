@@ -8,6 +8,7 @@ import '../models/product.dart';
 class ApiService {
   final String _baseUrl = 'https://fakestoreapi.com';
 
+  // 모든 상품 정보를 가져오는 메서드
   Future<List<Product>> getProducts() async {
     final response = await http.get(Uri.parse('$_baseUrl/products'));
     if (response.statusCode == 200) {
@@ -17,6 +18,16 @@ class ApiService {
       return products;
     } else {
       throw 'Failed to load products';
+    }
+  }
+
+  // 특정 상품 정보를 가져오는 메서드
+  Future<Product> getProduct(int id) async {
+    final response = await http.get(Uri.parse('$_baseUrl/products/$id'));
+    if (response.statusCode == 200) {
+      return Product.fromJson(jsonDecode(response.body));
+    } else {
+      throw 'Failed to load product';
     }
   }
 }
