@@ -7,10 +7,10 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, EditTodoControllerDelegate {
     
-    var titleText: String?
-    var contentText: String?
+    var item: TodoItem?
+    var delegate: TodoTableViewControllerDelegate?
     
     private let titleLabel = UILabel()
     private let contentLabel = UILabel()
@@ -20,8 +20,13 @@ class DetailViewController: UIViewController {
         self.view.backgroundColor = .white
         self.navigationItem.largeTitleDisplayMode = .never
         
+        setupEditButton()
         setupUI() // UI 설정
         updateUI() // 데이터 설정
+    }
+    
+    private func setupEditButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(didTabEdit))
     }
     
     private func setupUI() {
@@ -47,7 +52,22 @@ class DetailViewController: UIViewController {
     }
     
     private func updateUI() {
-        titleLabel.text = titleText
-        contentLabel.text = contentText
+        titleLabel.text = item?.title
+        contentLabel.text = item?.content
+    }
+    
+    @objc private func didTabEdit() {
+        
+        let vc = EditTodoController()
+        vc.delegate = delegate
+        vc.editDelegate = self
+        vc.item = item
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func didUpdateTodoItem(_ item: TodoItem) {
+        self.item = item
+        updateUI()
     }
 }

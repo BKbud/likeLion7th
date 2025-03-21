@@ -55,10 +55,18 @@ class TodoTableViewController: UITableViewController, TodoTableViewControllerDel
         let item = items[indexPath.row]
         
         let vc = DetailViewController()
-        vc.titleText = item.title
-        vc.contentText = item.content
+        vc.item = item
+        vc.delegate = self
         
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    // 스와이프 삭제
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+      if editingStyle == .delete {
+        let item = items[indexPath.row]
+        deleteTodoItem(item)
+      }
     }
     
     func loadTodoItems() {
@@ -68,6 +76,11 @@ class TodoTableViewController: UITableViewController, TodoTableViewControllerDel
 
     func saveTodoItem(_ item: TodoItem) {
         CoreDataManager.shared.saveTodoItem(item)
+        loadTodoItems()
+    }
+    
+    func editTodoItem(_ item: TodoItem) {
+        CoreDataManager.shared.editTodoItem(item)
         loadTodoItems()
     }
     

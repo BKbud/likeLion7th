@@ -10,5 +10,6 @@ import UIKit
 protocol TodoTableViewControllerDelegate: AnyObject {
     func loadTodoItems()
     func saveTodoItem(_ item: TodoItem)
+    func editTodoItem(_ item: TodoItem)
     func deleteTodoItem(_ item: TodoItem)
 }

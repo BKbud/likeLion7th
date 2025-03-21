@@ -18,6 +18,17 @@ class CoreDataManager {
         persistentContainer = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
     }
     
+    func loadTodoItems() -> [TodoItem] {
+        let fetchRequest: NSFetchRequest<TodoItemEntity> = TodoItemEntity.fetchRequest()
+        do {
+            let result = try viewContext.fetch(fetchRequest)
+            return result.compactMap { TodoItem.from($0) }
+        } catch {
+            print("데이터 로드 실패: \(error)")
+            return []
+        }
+    }
+    
     var viewContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
@@ -32,14 +43,19 @@ class CoreDataManager {
         }
     }
     
-    func loadTodoItems() -> [TodoItem] {
+    func editTodoItem(_ item: TodoItem) {
         let fetchRequest: NSFetchRequest<TodoItemEntity> = TodoItemEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id = %@", item.id as CVarArg)
+        
         do {
             let result = try viewContext.fetch(fetchRequest)
-            return result.compactMap { TodoItem.from($0) }
+            if let objectToEdit = result.first {
+                objectToEdit.title = item.title
+                objectToEdit.content = item.content
+                try viewContext.save()
+            }
         } catch {
-            print("데이터 로드 실패: \(error)")
-            return []
+            print("수정 실패: \(error)")
         }
     }
     
