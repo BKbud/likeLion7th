@@ -17,8 +17,7 @@ class SecondViewController: UIViewController {
     let appearance = UINavigationBarAppearance()
     appearance.configureWithOpaqueBackground()
     appearance.backgroundColor = .systemBlue
-    appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-
+    
     navigationController?.navigationBar.standardAppearance = appearance
     navigationController?.navigationBar.scrollEdgeAppearance = appearance
     navigationController?.navigationBar.tintColor = .white // 아이템 색상
