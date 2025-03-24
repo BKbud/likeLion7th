@@ -7,7 +7,11 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, EditTodoControllerDelegate {
+protocol DetailTodoControllerDelegate: AnyObject {
+    func didUpdateTodoItem(item: TodoItem)
+}
+
+class DetailViewController: UIViewController, DetailTodoControllerDelegate {
     
     var item: TodoItem?
     var delegate: TodoTableViewControllerDelegate?
@@ -59,15 +63,16 @@ class DetailViewController: UIViewController, EditTodoControllerDelegate {
     @objc private func didTabEdit() {
         
         let vc = EditTodoController()
-        vc.delegate = delegate
-        vc.editDelegate = self
+        vc.delegate = self
         vc.item = item
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func didUpdateTodoItem(_ item: TodoItem) {
+    func didUpdateTodoItem(item: TodoItem) {
         self.item = item
         updateUI()
+        
+        delegate?.editTodoItem(item: item)
     }
 }

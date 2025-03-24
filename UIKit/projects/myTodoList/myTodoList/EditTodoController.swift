@@ -7,14 +7,9 @@
 
 import UIKit
 
-protocol EditTodoControllerDelegate: AnyObject {
-    func didUpdateTodoItem(_ item: TodoItem)
-}
-
 class EditTodoController: UIViewController {
     
-    var delegate: TodoTableViewControllerDelegate?
-    var editDelegate: EditTodoControllerDelegate?
+    var delegate: DetailTodoControllerDelegate?
     var item: TodoItem?
         
     private let titleTextField = UITextField()
@@ -73,8 +68,7 @@ class EditTodoController: UIViewController {
         }
         
         let editedItem = TodoItem(id: item.id, title: title, content: content, isCompleted: item.isCompleted)
-        delegate?.editTodoItem(editedItem)
-        editDelegate?.didUpdateTodoItem(editedItem)
+        delegate?.didUpdateTodoItem(item: editedItem)
         
         self.navigationController?.popViewController(animated: true)
     }

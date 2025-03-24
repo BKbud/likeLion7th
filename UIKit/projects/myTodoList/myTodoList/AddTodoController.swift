@@ -64,7 +64,7 @@ class AddTodoController: UIViewController {
         }
         
         let newItem = TodoItem(title: title, content: content)
-        delegate?.saveTodoItem(newItem)
+        delegate?.saveTodoItem(item: newItem)
         
         self.navigationController?.popViewController(animated: true)
     }
