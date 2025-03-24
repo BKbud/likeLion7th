@@ -66,12 +66,13 @@ class EditTodoController: UIViewController {
     @objc func didTapSave() {
         guard let item = self.item,
               let title = titleTextField.text, !title.isEmpty,
-              let content = contentTextView.text, !content.isEmpty else {
+              let content = contentTextView.text, !content.isEmpty
+        else {
             // TODO: 알림창 구현
             return
         }
         
-        let editedItem = TodoItem(id: item.id, title: title, content: content)
+        let editedItem = TodoItem(id: item.id, title: title, content: content, isCompleted: item.isCompleted)
         delegate?.editTodoItem(editedItem)
         editDelegate?.didUpdateTodoItem(editedItem)
         
